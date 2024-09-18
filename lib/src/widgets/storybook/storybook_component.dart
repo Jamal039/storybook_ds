@@ -133,8 +133,12 @@ class _StoryBookComponentMobileState extends State<StoryBookComponent> {
         builder: (context, value, child) {
           return ContentWidget(
             attributes: controller.attributes,
-            onAttributes: (attributes) {
-              controller.onUpdateAttributes(attributes);
+            onAttributes: (attributes, attribute) {
+              if (attribute.onChangeValue != null) {
+                attribute.onChangeValue!(attribute);
+              } else {
+                controller.onUpdateAttributes(attributes);
+              }
             },
             description: description,
             title: title,
@@ -347,8 +351,12 @@ class _StoryBookComponentWebState extends State<StoryBookComponent> {
         builder: (context, value, child) {
           return ContentWidget(
             attributes: controller.attributes,
-            onAttributes: (attributes) {
-              controller.onUpdateAttributes(attributes);
+            onAttributes: (attributes, attribute) {
+              if (attribute.onChangeValue != null) {
+                attribute.onChangeValue!(attribute);
+              } else {
+                controller.onUpdateAttributes(attributes);
+              }
             },
             description: description,
             title: title,

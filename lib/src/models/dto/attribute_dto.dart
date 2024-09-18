@@ -1,6 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
+typedef OnChangeValue = void Function(AttributeDto value);
+
 class AttributeDto {
   final String type;
   final String name;
@@ -10,6 +12,7 @@ class AttributeDto {
   final VariableOptionType variableOptionType;
   final bool required;
   final VariableOption? defaultValue;
+  final OnChangeValue? onChangeValue;
 
   VariableOption? selectedValue;
 
@@ -22,6 +25,7 @@ class AttributeDto {
     bool required = false,
     VariableOption? selectedValue,
     VariableOption? defaultValue,
+    OnChangeValue? onChangeValue,
   }) {
     if (variableOptions == null && selectedValue != null) {
       variableOptions = [selectedValue];
@@ -39,6 +43,7 @@ class AttributeDto {
       description: description,
       required: required,
       variableOptionType: DefaultType(),
+      onChangeValue: onChangeValue,
     );
   }
 
@@ -52,6 +57,7 @@ class AttributeDto {
     bool required = false,
     int? selectedValue,
     int? defaultValue,
+    OnChangeValue? onChangeValue,
   }) {
     return AttributeDto._raw(
       type: 'int${canBeNull ? '?' : ''}',
@@ -66,6 +72,7 @@ class AttributeDto {
       description: description,
       required: required,
       variableOptionType: RangeIntIntervalType(begin, end),
+      onChangeValue: onChangeValue,
     );
   }
   factory AttributeDto.string({
@@ -77,6 +84,7 @@ class AttributeDto {
     String? mask,
     String? selectedValue,
     String? defaultValue,
+    OnChangeValue? onChangeValue,
   }) {
     return AttributeDto._raw(
       type: 'String${canBeNull ? '?' : ''}',
@@ -88,6 +96,7 @@ class AttributeDto {
       description: description,
       required: required,
       variableOptionType: StringType(mask: mask),
+      onChangeValue: onChangeValue,
     );
   }
   factory AttributeDto.function({
@@ -97,6 +106,7 @@ class AttributeDto {
     String? description,
     List<String?> builders = const [],
     bool required = false,
+    OnChangeValue? onChangeValue,
   }) {
     return AttributeDto._raw(
       type: 'Function${canBeNull ? '?' : ''}',
@@ -108,6 +118,7 @@ class AttributeDto {
       description: description,
       required: required,
       variableOptionType: FunctionType(function: function),
+      onChangeValue: onChangeValue,
     );
   }
   factory AttributeDto.rangeDoubleInterval({
@@ -120,6 +131,7 @@ class AttributeDto {
     bool required = false,
     double? selectedValue,
     double? defaultValue,
+    OnChangeValue? onChangeValue,
   }) {
     return AttributeDto._raw(
       type: 'double${canBeNull ? '?' : ''}',
@@ -134,6 +146,7 @@ class AttributeDto {
       description: description,
       required: required,
       variableOptionType: RangeDoubleIntervalType(begin, end),
+      onChangeValue: onChangeValue,
     );
   }
 
@@ -145,6 +158,7 @@ class AttributeDto {
     bool required = false,
     Color? selectedValue,
     Color? defaultValue,
+    OnChangeValue? onChangeValue,
   }) {
     return AttributeDto._raw(
       type: 'Color${canBeNull ? '?' : ''}',
@@ -156,6 +170,7 @@ class AttributeDto {
       description: description,
       required: required,
       variableOptionType: ColorType(),
+      onChangeValue: onChangeValue,
     );
   }
 
@@ -169,6 +184,7 @@ class AttributeDto {
     required this.required,
     required this.variableOptionType,
     required this.defaultValue,
+    required this.onChangeValue,
   });
 
   String get toStringValue {

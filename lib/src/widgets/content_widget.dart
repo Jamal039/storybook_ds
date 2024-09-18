@@ -10,7 +10,8 @@ class ContentWidget extends StatelessWidget {
   final String? constructor;
   final String nameObjectInDisplay;
   final List<AttributeDto> attributes;
-  final Function(List<AttributeDto> attributes)? onAttributes;
+  final Function(List<AttributeDto> attributes, AttributeDto currentAtribute)?
+      onAttributes;
   final Function(String? constructor) onSelectedConstructor;
   final String Function() updatePreviewCode;
 
@@ -113,7 +114,11 @@ class ContentWidget extends StatelessWidget {
                         if (onAttributes != null) {
                           onSelectedConstructor(e2);
 
-                          onAttributes!(attributes);
+                          final attribute = attributes.firstWhere(
+                            (element) => element.builders.contains(e2),
+                            orElse: () => attributes.first,
+                          );
+                          onAttributes!(attributes, attribute);
                         }
                       }),
                 )

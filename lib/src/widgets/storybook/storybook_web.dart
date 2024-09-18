@@ -146,7 +146,7 @@ abstract class Storybook<T extends StatefulWidget> extends State {
   Widget _buildContent() {
     return ContentWidget(
       attributes: attributes,
-      onAttributes: (attributes) {
+      onAttributes: (attributes, attribute) {
         onUpdateAttributes(attributes);
       },
       description: description,
