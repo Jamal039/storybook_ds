@@ -1,4 +1,3 @@
-import 'package:device_frame/device_frame.dart';
 import 'package:flutter/material.dart';
 
 import '../../models/dto/attribute_dto.dart';
