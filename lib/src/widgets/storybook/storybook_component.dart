@@ -82,7 +82,7 @@ class _StoryBookComponentMobileState extends State<StoryBookComponent> {
         ),
       );
 
-  late final Widget child = widget.child;
+  Widget get child => widget.child;
   late final String title = widget.title;
   late final String description = widget.description;
   late final String nameObjectInDisplay = widget.nameObjectInDisplay;
@@ -117,7 +117,7 @@ class _StoryBookComponentMobileState extends State<StoryBookComponent> {
               child: _buildContent(),
             ),
             Center(
-              child: widget.child,
+              child: child,
             ),
             Center(
               child: _buildPreviewCode(),
@@ -232,7 +232,7 @@ class _StoryBookComponentWebState extends State<StoryBookComponent> {
         ),
       );
 
-  late final Widget child = widget.child;
+  Widget get child => widget.child;
   late final String title = widget.title;
   late final String description = widget.description;
   late final String nameObjectInDisplay = widget.nameObjectInDisplay;
@@ -457,9 +457,7 @@ class _StoryBookComponentWebState extends State<StoryBookComponent> {
             id: 'medium',
             platform: TargetPlatform.windows,
           ),
-          screen: Builder(
-            builder: (deviceContext) => child,
-          ),
+          screen: child,
         ),
       ),
     );
