@@ -58,6 +58,7 @@ class StoryBookComponent extends StatefulWidget {
     this.attributes = const [],
     this.description = '',
     this.controller,
+    this.backgroundColor,
   }) : super(key: key);
 
   final Widget child;
@@ -66,6 +67,7 @@ class StoryBookComponent extends StatefulWidget {
   final List<AttributeDto> attributes;
   final String nameObjectInDisplay;
   final StoryBookComponentController? controller;
+  final Color? backgroundColor;
 
   @override
   // ignore: no_logic_in_create_state
@@ -92,6 +94,7 @@ class _StoryBookComponentMobileState extends State<StoryBookComponent> {
       length: 3,
       initialIndex: 1,
       child: Scaffold(
+        backgroundColor: widget.backgroundColor,
         appBar: AppBar(
           backgroundColor: Colors.white,
           elevation: 0,
@@ -246,6 +249,7 @@ class _StoryBookComponentWebState extends State<StoryBookComponent> {
     final height = MediaQuery.of(context).size.height * 0.8;
 
     return Scaffold(
+      backgroundColor: widget.backgroundColor,
       appBar: AppBar(
         elevation: 0,
         automaticallyImplyLeading: false,
