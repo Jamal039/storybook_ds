@@ -228,7 +228,7 @@ class AttributesVariantWidget extends StatelessWidget {
                 child: Slider(
                   max: double.parse('${va.end}'),
                   min: double.parse('${va.begin}'),
-                  value: e.selectedValue?.value ?? va.begin,
+                  value: (e.selectedValue?.value ?? va.begin ?? 0).toDouble(),
                   onChanged: (v) {
                     if (e.variableOptionType is RangeDoubleIntervalType) {
                       e.selectedValue?.value =
